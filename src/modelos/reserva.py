@@ -21,3 +21,15 @@ class Reserva:
             self.__quarto.ocupar_quarto()
         else:
             print("Quarto não está disponível para reserva.")
+    
+    @property 
+    def data_entrada(self):
+        return self.__data_entrada
+    
+    @property
+    def data_saida(self):
+        return self.__data_saida  
+    
+    def calcular_duracao(self, data_inicial, data_final):
+        duracao = (data_final - data_inicial).days
+        return duracao
