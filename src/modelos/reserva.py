@@ -1,38 +1,24 @@
-from datetime import date
-
 class Reserva:
-    def __init__(self, hospede, quarto, data_entrada, data_saida):
+    def __init__(self, hospede, quarto, dias, pagamento):
         if not quarto.disponivel:
             raise ValueError("Quarto indisponível")
 
-        self.__hospede = hospede
-        self.__quarto = quarto
-        self.__data_entrada = data_entrada
-        self.__data_saida = data_saida
+        self._hospede = hospede
+        self._quarto = quarto
+        self._dias = dias
+        self._pagamento = pagamento
 
-        self.__quarto.ocupar_quarto()
+        quarto.ocupar()
 
-    @property
-    def hospede(self):
-        return self.__hospede
+    def calcular_total(self):
+        if hasattr(self._quarto, "valor_total_diaria"):
+            diaria = self._quarto.valor_total_diaria()
+        else:
+            diaria = self._quarto.valor_diaria
 
-    @property
-    def quarto(self):
-        return self.__quarto
+        return diaria * self._dias
 
-    @property
-    def data_entrada(self):
-        return self.__data_entrada
-
-    @property
-    def data_saida(self):
-        return self.__data_saida
-
-    def calcular_duracao(self):
-        return (self.__data_saida - self.__data_entrada).days
-
-    def calcular_valor_total(self):
-        return self.calcular_duracao() * self.__quarto.valor_diaria
-
-    def encerrar(self):
-        self.__quarto.liberar_quarto()
+    def finalizar(self):
+        total = self.calcular_total()
+        self._pagamento.pagar(total)
+        self._quarto.liberar()

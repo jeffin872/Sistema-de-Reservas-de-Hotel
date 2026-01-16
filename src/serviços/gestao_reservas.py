@@ -1,1 +1,9 @@
-#aqui será feito a lógica das reservas, onde será guardado a lista de reservas e métodos para criar, cancelar e listar reservas
+class GestaoReservas:
+    def __init__(self):
+        self._reservas = []
+
+    def adicionar(self, reserva):
+        self._reservas.append(reserva)
+
+    def listar(self):
+        return self._reservas

@@ -1,33 +1,44 @@
 class Quarto:
-    def __init__(self, numero, capacidade, modelo, valor_diaria):
-        self.__numero = numero
-        self.__capacidade = capacidade
-        self.__modelo = modelo
-        self.__disponivel = True
-        self.__valor_diaria = valor_diaria
+    def __init__(self, numero, capacidade, valor_diaria):
+        self._numero = numero
+        self._capacidade = capacidade
+        self._valor_diaria = valor_diaria
+        self._disponivel = True
 
     @property
     def numero(self):
-        return self.__numero
+        return self._numero
 
     @property
     def capacidade(self):
-        return self.__capacidade
-
-    @property
-    def modelo(self):
-        return self.__modelo
+        return self._capacidade
 
     @property
     def disponivel(self):
-        return self.__disponivel
+        return self._disponivel
 
-    @property
     def valor_diaria(self):
-        return self.__valor_diaria
+        return self._valor_diaria
 
-    def liberar_quarto(self):
-        self.__disponivel = True
+    def ocupar(self):
+        self._disponivel = False
 
-    def ocupar_quarto(self):
-        self.__disponivel = False
+    def liberar(self):
+        self._disponivel = True
+
+    def descricao(self) -> str:
+        return "Quarto padrão"
+class QuartoSimples(Quarto):
+    def descricao(self) -> str:
+        return "Quarto Simples"
+
+class QuartoLuxo(Quarto):
+    def __init__(self, numero, capacidade, valor_diaria, taxa_luxo):
+        super().__init__(numero, capacidade, valor_diaria)
+        self._taxa_luxo = taxa_luxo
+
+    def valor_diaria(self):
+        return self._valor_diaria + self._taxa_luxo
+
+    def descricao(self):
+        return "Quarto Luxo"

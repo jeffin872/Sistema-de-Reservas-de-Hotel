@@ -1,2 +1,10 @@
-#aqui sera feito a logica dos pagamentos, de inicio será simples, como apenas uma forma de pagamento e valor total. 
-#Mas depois pretendemos colocar mais formas de pagamentos e parcelamentos. 
+class Pagamento:
+    def pagar(self, valor):
+        pass
+class Dinheiro(Pagamento):
+    def pagar(self, valor):
+        print(f"Pagamento de R$ {valor:.2f} em dinheiro realizado.")
+
+class Pix(Pagamento):
+    def pagar(self, valor):
+        print(f"Pagamento de R$ {valor:.2f} via Pix realizado.")
