@@ -7,3 +7,7 @@ class GestaoReservas:
 
     def listar(self):
         return self._reservas
+
+    def salvar(self):
+        from persistencia.persistencia__json import salvar_reservas
+        salvar_reservas(self._reservas)

@@ -4,6 +4,24 @@ class Reserva:
         self._quarto = quarto
         self._dias = dias
         self._pagamento = pagamento
+        self._estado = "CRIADA"
+
+    @property
+    def hospede(self):
+        return self._hospede
+
+    @property
+    def quarto(self):
+        return self._quarto
+
+    @property
+    def dias(self):
+        return self._dias
+
+    @property
+    def estado(self):
+        return self._estado
+    
 
     def confirmar(self):
         self._quarto.ocupar()

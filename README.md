@@ -1,38 +1,91 @@
-istema de Reservas de Hotel
-Integrantes da equipe:
------------------------------------------
-Jefferson da Rocha Teodoro - Responsabilidade: Criação da API (Flask) e Integração do Sistema
+🏨 Sistema de Reservas de Hotel
 
-Gival Pordeus da Silva Neto - Responsabilidade: Modelagem de Classes e POO
+Sistema de Reservas de Hotel desenvolvido em Python, utilizando Programação Orientada a Objetos (POO).
+A aplicação funciona em linha de comando (CLI) e foi estruturada de forma modular, priorizando organização, clareza e facilidade de manutenção.
 
-Genildo da Silva Ferreira - Responsabilidade: Regras de Negócio e Estados da Reserva
+ Conceitos Aplicados
 
-Thalyson de Sousa Batista Maia - Responsabilidade: Cálculo de Tarifas e Relatórios
+Modelagem por classes bem definidas
 
-Thalis Leandro Bezerra de Lima - Responsabilidade: Persistência, Configurações e Testes
+Uso de herança (Pessoa → Hospede, Quarto → QuartoSimples / QuartoLuxo)
 
-Principais Classes Projeto:
-Classe: Pessoa (será a interface para outros usuários)
+Encapsulamento com atributos protegidos e uso de @property
 
-Atributos: Nome, CPF, E-mail, Telefone
-Métodos: getters e setters (para validação dos dados), atualização_dos_dados (mudar email ou telefone)
-Classe: Hospede
+Polimorfismo para cálculo de diárias
 
-Atributos: [Nome, CPF, E-mail, Telefone] e lista_de_reservas_do_hóspede (vai herdar os atributos de pessoa e adicionar mais um)
-Métodos: Adicionar_reserva(), listar_reservas()
-Classe: Quarto
+Controle de estados da reserva (criada, confirmada, cancelada, finalizada)
 
-Atributos: Número (Chave primária), capacidade, tarifa_por_diária, status
-Métodos: Verificar_disponibilidade(), alterar_status(), bloquear() e desbloquear()
-Classe: Reserva
+Validações centralizadas nos métodos
 
-Atributos: Hóspede, quarto, data_entrada, data_saida, n_de_hóspedes, origem, status, pagamentos, adicionais
-Métodos: confirmar(), cancelar(). checkin(), checkout(), marcar_no_show(), calcular_valor_diarias(), calcular_valor_total, total_pago(), validar_capacidade()
-Classe: Pagamento
+Uso de exceções customizadas para regras de negócio
 
-Atributos: data, forma_pagamento (dinheiro, crédito, débito, PIX), valor
-Métodos: validar_valor()
-Classe: Configuracao
+Separação por módulos (modelos, serviços, persistencia, testes)
 
-Atributos: horario_checkin, horario_checkout, tolerancia_no_show, politica_cancelamento, multiplicador_fim_semana, temporadas
-Métodos: carregar_configuracoes(), obter_multiplicador()
+Testes automatizados utilizando assert
+
+💾 Persistência de Dados
+
+Implementada persistência em JSON
+
+As reservas são salvas automaticamente ao final do fluxo
+
+Os dados incluem hóspede, quarto, quantidade de dias e estado da reserva
+
+Persistência desacoplada da lógica principal, respeitando o encapsulamento
+
+📌 Diagrama Simplificado
+
+Pessoa
+ └── Hospede
+        └── lista_reservas
+
+Quarto
+ ├── QuartoSimples
+ └── QuartoLuxo
+
+Reserva
+ ├── Hospede
+ ├── Quarto
+ └── Pagamento
+
+Pagamento
+ ├── Dinheiro
+ └── Pix
+
+
+📌 Principais Classes
+*Pessoa*
+
+Armazena dados básicos do usuário
+
+Realiza validações e atualização de informações
+
+Hospede
+
+Representa o hóspede do hotel
+
+Gerencia as reservas associadas
+
+*Quarto*
+
+Controla dados e disponibilidade
+
+Define o valor da diária e tipo do quarto
+
+*Reserva*
+
+Gerencia o ciclo de vida da reserva
+
+Controla estados, pagamentos e valores
+
+*Pagamento*
+
+Representa a forma de pagamento
+
+Valida os valores pagos
+
+Configuracao
+
+Centraliza regras gerais do sistema
+
+Define políticas e multiplicadores

@@ -103,8 +103,9 @@ while controle:
 
     if pagar.lower() == "s":
         reserva.finalizar()
-        print("Pagamento realizado. Sistema encerrado.")
+        print("Pagamento realizado. Reserva finalizada.")
         gestao.adicionar(reserva)
+        gestao.salvar()
         controle = False
     else:
         print("\nReserva não paga. Retornando ao início...\n")
