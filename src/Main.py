@@ -11,15 +11,6 @@ quartos = [
     QuartoLuxo(201, 4, 300, 100)
 ]
 
-def validacao_nome(nome):
-    if not nome.strip():
-        return "Você informou espaços vázios, tente novamente."
-    elif nome.isdigit():
-        return "VocÊ informou apenas números, tente novamente."
-    elif nome.isalnum():
-        return "Você informou letras e números, tente novmente. "
-    return None
-
 gestao = GestaoReservas()
 
 
@@ -65,35 +56,59 @@ while True:
 
 hospede = Hospede(nome, cpf)
 while True:
-    dias = (input("Quantos dias ficará hospedado? "))
-    if validar_dias(dias):
-        dias = int(dias)
-        break
-    print("Informe um valor válido!")
-    
-while True:
-    indice_input = input("Escolha o índice do quarto: ")
-    if indice_input.isdigit() and int(indice_input) < len(quartos):
-        indice = int(indice_input)
-        quarto = quartos[indice]
-        if quarto.disponivel:
-            break
-        else:
-            print("Este quarto não está disponível.")
-    else:
-        print(f"Escolha um número válido entre 0 e {len(quartos)-1}.")
+    dias = input("Quantos dias ficará hospedado? ")
 
-# 5. Pagamento e Finalização
-print("\nForma de pagamento: 1 - Dinheiro | 2 - Pix")
-op = input("Escolha: ")
-pagamento = Dinheiro() if op == "1" else Pix()
+    if validar_dias(dias):
+        dias = int(dias.replace(" ", ""))
+        break
+    else:
+        print("Informe um valor válido!")
+
+print("\nModelos de quarto disponíveis:")
+for i, q in enumerate(quartos):
+    status = "Disponível" if q.disponivel else "Ocupado"
+    if q.disponivel:
+        print(f"{i} - {q.descricao()} (Quarto {q.numero}) - {status}")
+
+while True:
+    indice_input = input("Escolha o número do quarto: ")
+    if indice_input.isdigit():
+        indice = int(indice_input)
+        if 0 <= indice < len(quartos):
+            quarto = quartos[indice]
+            if quarto.disponivel:
+                break
+            else:
+                print("Este quarto já está ocupado. Escolha outro.")
+        else:
+            print(f"Opção inválida. Escolha um número entre 0 e {len(quartos)-1}.")
+    else:
+        print("Erro: Digite apenas o número da opção.")
+
+print("\nForma de pagamento:")
+print("1 - Dinheiro")
+print("2 - Pix")
+while True:
+    op = input("Escolha (1 ou 2): ")
+    if op == "1":
+        pagamento = Dinheiro()
+        break
+    elif op == "2":
+        pagamento = Pix()
+        break
+    print("Opção de pagamento inválida.")
 
 reserva = Reserva(hospede, quarto, dias, pagamento)
 gestao.adicionar(reserva)
 
-print(f"\nReserva criada com sucesso! Total: R$ {reserva.calcular_total():.2f}")
+print("\n" + "="*40)
+print("RESERVA CRIADA COM SUCESSO!")
+print(f"Hóspede: {hospede.nome}")
+print(f"Quarto: {quarto.numero}")
+print(f"Total a pagar: R$ {reserva.calcular_total():.2f}")
+print("="*40)
 
-finalizar = input("Deseja finalizar a reserva agora? (s/n): ")
+finalizar = input("\nDeseja finalizar (pagar e libertar) a reserva agora? (s/n): ")
 if finalizar.lower() == "s":
     reserva.finalizar()
-    print("Reserva finalizada e quarto liberado.")
+    print("Reserva finalizada. O quarto está agora disponível.")
