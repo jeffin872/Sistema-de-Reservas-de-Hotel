@@ -1,5 +1,21 @@
 🏨 Sistema de Reservas de Hotel
 
+▶️ Como Executar o Sistema
+
+1️⃣ Clonar o repositório
+git clone <url-do-repositorio>
+cd Sistema_Reservas_Hotel
+
+2️⃣Criar e ativar o ambiente virtual (venv)
+python -m venv venv
+
+3️⃣ Instalar as dependências
+pip install -r requirements.txt
+
+4️⃣ Executar o sistema 
+python Main.py (execute dentro da pasta src)
+
+
 Sistema de Reservas de Hotel desenvolvido em Python, utilizando Programação Orientada a Objetos (POO).
 A aplicação funciona em linha de comando (CLI) e foi estruturada de forma modular, priorizando organização, clareza e facilidade de manutenção.
 

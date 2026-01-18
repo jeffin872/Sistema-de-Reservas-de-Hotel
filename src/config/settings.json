@@ -1,0 +1,18 @@
+
+{
+  "checkin_hora": "14:00",
+  "checkout_hora": "12:00",
+
+  "multa_cancelamento": 0.3,
+  "taxa_no_show": 1.0,
+
+  "multiplicador_fim_semana": 1.2,
+
+  "estados_reserva": [
+    "CRIADA",
+    "CONFIRMADA",
+    "CANCELADA",
+    "NO_SHOW",
+    "FINALIZADA"
+  ]
+}

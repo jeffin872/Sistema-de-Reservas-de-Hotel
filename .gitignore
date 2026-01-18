@@ -1,1 +1,11 @@
+# Python
 __pycache__/
+*.py[cod]
+
+# Virtual env
+venv/
+.venv/
+
+# Pytest
+.pytest_cache/
+.coverage

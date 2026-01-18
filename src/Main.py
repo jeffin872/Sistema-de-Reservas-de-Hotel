@@ -3,7 +3,8 @@ from modelos.quarto import QuartoSimples, QuartoLuxo
 from modelos.pagamento import Dinheiro, Pix
 from modelos.reserva import Reserva
 from serviços.gestao_reservas import GestaoReservas
-
+from modelos.configuracao import Configuracao
+from modelos.configuracao import Configuracao
 # Quartos disponíveis
 quartos = [
     QuartoSimples(101, 2, 150),
@@ -12,6 +13,7 @@ quartos = [
 ]
 
 gestao = GestaoReservas()
+config = Configuracao()
 
 
 #  VALIDAÇÕES 
@@ -88,7 +90,7 @@ while controle:
             break
         print("Opção inválida.")
 
-    reserva = Reserva(hospede, quarto, dias, pagamento)
+    reserva = Reserva(hospede, quarto, dias, pagamento, config)
 
     #  RESUMO 
     print("\n" + "=" * 40)
@@ -102,10 +104,12 @@ while controle:
     pagar = input("\nDeseja pagar agora? (s/n): ")
 
     if pagar.lower() == "s":
+        reserva.confirmar()
         reserva.finalizar()
         print("Pagamento realizado. Reserva finalizada.")
         gestao.adicionar(reserva)
         gestao.salvar()
         controle = False
     else:
-        print("\nReserva não paga. Retornando ao início...\n")
+        reserva.cancelar()
+        print("Reserva cancelada. Quarto liberado.")
