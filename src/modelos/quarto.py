@@ -5,6 +5,9 @@ class Quarto:
         self._valor_diaria = valor_diaria
         self._disponivel = True
 
+    def valor_total_diaria(self):
+        return self._valor_diaria
+
     @property
     def numero(self):
         return self._numero
@@ -17,9 +20,6 @@ class Quarto:
     def disponivel(self):
         return self._disponivel
 
-    def valor_diaria(self):
-        return self._valor_diaria
-
     def ocupar(self):
         self._disponivel = False
 
@@ -27,18 +27,22 @@ class Quarto:
         self._disponivel = True
 
     def descricao(self) -> str:
-        return "Quarto padrão"
+        raise NotImplementedError("Este método deve ser implementado nas subclasses")
+
 class QuartoSimples(Quarto):
     def descricao(self) -> str:
         return "Quarto Simples"
+
+
 
 class QuartoLuxo(Quarto):
     def __init__(self, numero, capacidade, valor_diaria, taxa_luxo):
         super().__init__(numero, capacidade, valor_diaria)
         self._taxa_luxo = taxa_luxo
 
-    def valor_diaria(self):
+    def valor_total_diaria(self):
         return self._valor_diaria + self._taxa_luxo
 
-    def descricao(self):
-        return "Quarto Luxo"
+    def descricao(self) -> str:
+        return "Quarto Luxuoso"
+
