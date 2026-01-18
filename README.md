@@ -15,10 +15,7 @@ pip install -r requirements.txt
 4️⃣ Executar o sistema 
 python Main.py (execute dentro da pasta src)
 
-
-Sistema de Reservas de Hotel desenvolvido em Python, utilizando Programação Orientada a Objetos (POO).
-A aplicação funciona em linha de comando (CLI) e foi estruturada de forma modular, priorizando organização, clareza e facilidade de manutenção.
-
+ 
  Conceitos Aplicados
 
 Modelagem por classes bem definidas
