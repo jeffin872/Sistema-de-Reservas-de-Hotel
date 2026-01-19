@@ -102,3 +102,11 @@ Configuracao
 Centraliza regras gerais do sistema
 
 Define políticas e multiplicadores
+
+
+## Integrantes da equipe:
+* Jefferson da Rocha Teodoro - Responsabilidade: Modularização do códio, criação da lógica e relacionamento entre as classes
+* Gival Pordeus da Silva Neto - Responsabilidade: Modelagem de Classes e POO 
+* Genildo da Silva Ferreira - Responsabilidade: Regras de Negócio e Estados da Reserva
+* Thalyson de Sousa Batista Maia - Responsabilidade: Cálculo de Tarifas e Relatórios
+* Thalis Leandro Bezerra de Lima - Responsabilidade: Persistência, Testes
